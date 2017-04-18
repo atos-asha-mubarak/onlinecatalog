@@ -1,0 +1,424 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=windows-1250"> 
+<meta name="generator" content="PSPad editor, www.pspad.com">
+
+<title></title>
+
+<style>
+
+body {background-color:pink}
+
+h3 {color:blue}
+
+p {color: red}
+
+p {font-size: 100%;}
+
+#id2{
+
+position: absolute ;
+
+top:150px;
+
+left:280px;
+
+}
+
+#id3{
+
+position: absolute ;
+
+top:175px;
+
+left:270px;
+
+}
+
+#id4{
+
+position: absolute ;
+
+top:195px;
+
+left:150px;
+
+}
+
+#id5{
+
+position: absolute ;
+
+top:215px;
+
+left:275px;
+
+}
+
+#id5{
+
+position: absolute ;
+
+top:218px;
+
+left:277px;
+
+}
+
+#id6{
+
+position: absolute ;
+
+top:240px;
+
+left:277px;
+
+}
+
+#id7{
+
+position: absolute ;
+
+top:265px;
+
+left:248px;
+
+}
+
+</style>
+
+<script>
+
+/** greeting the user
+
+06:00-10:00 Good morning
+
+10:00-13:00 Good noon
+
+13:00-17:00 Good afternoon
+
+17:00-21:00 Good evening
+
+21:00-06:00 Good night
+
+**/
+
+var currentTime = new Date()
+
+var hours = currentTime.getHours()
+
+var suffix = "";
+
+//var minutes = currentTime.getMinutes()
+
+if ((hours > 6) &&( hours <=10)) {
+
+suffix = "GOOD MORNING ";
+
+}
+
+if ((hours > 10)&&(hours <=13)){
+
+suffix = "GOOD NOON ";
+
+}
+
+if ((hours > 13)&&(hours <=17)){
+
+suffix = "GOOD AFTERNOON ";
+
+}
+
+if ((hours > 17)&&(hours <=21)){
+
+suffix = "GOOD EVENING ";
+
+}
+
+if((hours >21) && (hours < 6 )){
+
+suffix = "GOOD NIGHT ";
+
+}
+
+document.write( suffix)
+
+</script>
+
+<script src="script1.js"></script>
+
+<h2><p id="d1"></p></h2>
+
+<script>
+
+function myFunction() {
+
+var x = document.getElementById("id1").value;
+
+if (x == null || x == "") {
+
+alert("search must be filled out");
+
+return false;
+
+}
+
+}
+</script>
+
+<h3>
+
+<form   action= "search.php" method ="post">
+
+Search key words: <input type="Text" name = "search" id="id1">
+
+<button onclick="myFunction()" > submit </button>
+
+</h3>
+
+</form>
+
+<br>
+
+<script>
+
+
+
+var invalid =0;
+
+function validateForm(){
+  invalid=0;
+  var title_validate = document.getElementById("title").value;
+
+  var author_validate = document.getElementById("author").value;
+
+  var pdate_validate = document.getElementById("pdate").value;
+
+  var year_validate = document.getElementById("year").value;
+  
+  var publisher_validate = document.getElementById("publisher").value;
+
+  var isbn_validate = document.getElementById("isbn").value;
+
+  //title validation
+
+  if(title_validate =="") {
+    document.getElementById("id2").innerHTML="Your must fill the title";
+    invalid += 1;
+  }
+  else{
+    document.getElementById("id2").innerHTML="";
+  }
+
+
+
+
+// validate Author
+
+if(author_validate =="") {
+
+document.getElementById("id3").innerHTML ="Author name must be valid ";
+
+invalid += 1;
+
+}
+
+else{
+
+document.getElementById("id3").innerHTML="";
+
+}
+
+// validate publisher date
+
+if(pdate_validate =="") {
+
+document.getElementById("id6").innerHTML="Please select the published dates";
+
+invalid += 1;
+
+}
+
+else{
+
+document.getElementById("id6").innerHTML="";
+
+}
+
+//validate year
+
+if(year_validate =="") {
+
+document.getElementById("id4").innerHTML="Please select the year";
+
+invalid += 1;
+
+}
+
+else{
+
+document.getElementById("id4").innerHTML="";
+
+}
+
+ 
+  // validate publisher
+
+if(publisher_validate.length < 2)
+
+{
+
+
+document.getElementById("id5").innerHTML = "Your publisher name is invalid";
+
+invalid += 1;
+
+}
+
+else{
+
+ 
+document.getElementById("id5").innerHTML="";
+
+}
+  
+//validate NSBN
+
+
+if(isbn_validate =="" ) {
+
+document.getElementById("id7").innerHTML =" Your ISBN not valid ";
+
+invalid += 1;
+
+}
+
+else{
+
+document.getElementById("id7").innerHTML="";
+
+} 
+
+ // window.alert("Invalid value is: "+invalid);
+if(invalid != 0){
+   
+return false;
+
+}
+
+else{
+    window.alert("PLEASE WAIT TILL THE NEW BOOK ADD");
+return true;
+
+}
+}
+
+</script>
+
+
+
+<p> <span style="color:purple;font-weight:bold"> ADD BOOKS TO CATALOG </span> 
+</p> <div>
+
+<h3>
+
+<form name = "functionvalidation" action="dbconnect.php" method="post" 
+onSubmit="return validateForm()">
+
+Book Title: <input type="text" id ="title" name ="booktitle" min="5" max="20" ><br>
+
+Author: <input id="author" type="text" min="5" name = "authorname" max="20"><br>
+
+Year:<input id="year" type="number" name = "bookyear" min="1970" max="2016"><br>
+
+Publisher: <input id="publisher" type="Text" name = "bookpublisher" min="5" max="20"><br>
+
+Published Date:<input id="pdate" type="date" name="publishdate" max="1979"><br> 
+
+ISBN: <input id="isbn" type="Text" name = "isbnNum" min="5" max="7"><br>
+
+Language: <select id="language" name="booklanguage"><br>
+
+<option value="English">English </option>
+
+<option value="Franch">Franch</option>
+
+<option value="Deutch "> Dutch</option>
+
+<option value="Spanish">Spanish</option>
+
+<option value="Technology">Chinees</option>
+
+<option value="Czech">Czech</option>
+
+<option value="Slovak">Slovak</option>
+
+<option value="Polish">Polish</option>
+
+<option value="Deutsch">Deutsch</option>
+
+</select> <br>
+
+Subject:
+
+<select id="subject" name="booksubjects">
+
+<option value="Technology">Technology</option>
+
+<option value="Mathermatics">Mathermatics</option>
+
+<option value="Science">Science</option>
+
+<option value="fiction">Fiction</option>
+
+<option value="History">History</option>
+
+<option value="Art">Art& Design</option>
+
+<option value="Langudge">Language</option>
+
+<option value="Managmeent">Managment</option>
+
+<option value="Managmeent">Computer Science</option>
+
+<option value="Managmeent">Arts & Philosophy </option>
+
+</select>
+
+<br>
+
+<input type="submit" value="Submit">
+
+<input type="submit" value="Reset">
+
+</h3>
+
+</div>
+
+</form>
+
+<p id = "id2"> </p> <!-- TITLE -->
+
+<p id = "id3"></p> <!-- AOUTHER -->
+
+<p id = "id4"> </p>  <!-- YEAR-->
+
+<p id = "id5"> </p>  <!-- PUBLISHER -->
+
+<p id = "id6"> </p>  <!--PUBLISHER DATE-->
+
+<p id = "id7"></p>  <!-- NSBN   -->
+
+
+
+
+</head>
+
+</body>
+
+</html>
+
